@@ -1,6 +1,6 @@
 "use strict"
 
-let garazsh = "vitya Gavno";
-let pizdabloka = "Ssannaya annA";
+const textarea = document.querySelector(".textarea");
 
-console.log(garazsh + " " + pizdabloka);
+textarea.focus();
+document.body.onclick = textarea.focus;
