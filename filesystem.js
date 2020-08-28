@@ -161,3 +161,63 @@ function rmfile(fileName) {
     }
     return 0;
 }
+
+function rndir(folderName, newName) {
+    let folder;
+    currentFolder.content.forEach((elem) => {
+        if (elem.name == folderName && elem.type == 'folder') {
+            folder = elem;
+        }
+    });
+
+    if (!isExistFolder(newName)) {
+        folder.name = newName;
+        return 1;
+    }
+    return 0;
+}
+
+function rnfile(fileName, newName) {
+    let file;
+    currentFolder.content.forEach((elem) => {
+        if (elem.name == fileName.split('.')[0] && elem.type == 'file' && elem.extension == fileName.split('.')[1]) {
+            file = elem;
+        }
+    });
+
+    if (!isExistFile(newName)) {
+        file.name = newName.split('.')[0];
+        file.extension = newName.split('.')[1];
+        return 1;
+    }
+    return 0;
+}
+
+function getData(fileName) {
+    if (isExistFile(fileName)) {
+        let file;
+        currentFolder.content.forEach((elem) => {
+            if (elem.name == fileName.split('.')[0] && elem.type == 'file' && elem.extension == fileName.split('.')[1]) {
+                file = elem;
+            }
+        });
+        
+        return file.content;
+    }
+    return 0;
+}
+
+function setData(fileName, data) {
+    if (isExistFile(fileName)) {
+        let file;
+        currentFolder.content.forEach((elem) => {
+            if (elem.name == fileName.split('.')[0] && elem.type == 'file' && elem.extension == fileName.split('.')[1]) {
+                file = elem;
+            }
+        });
+        
+        file.content = data;
+        return 1;
+    }
+    return 0;
+}
