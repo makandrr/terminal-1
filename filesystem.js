@@ -138,7 +138,9 @@ function rmdir(folderName) {
             }
             return true;
         });
+        return 1;
     }
+    return 0;
 }
 
 function rmfile(fileName) {
@@ -155,5 +157,7 @@ function rmfile(fileName) {
             }
             return true;
         });
+        return 1;
     }
+    return 0;
 }
