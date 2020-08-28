@@ -59,6 +59,47 @@ textarea.addEventListener('keypress', (e) => {
             } else {
                 addOutput(textarea.value, 'You need to provide the parameter');
             }
+        } else if (command.command == 'rndir') {
+            if (command.param1 && command.param2) {
+                if (rndir(command.param1, command.param2)) {
+                    addOutput(textarea.value, `Folder "${command.param1}" renamed to "${command.param2}"`);
+                } else {
+                    addOutput(textarea.value, `Folder "${command.param1}" failed to rename:(`);
+                }
+            } else {
+                addOutput(textarea.value, 'You need to provide the parameter');
+            }
+        } else if (command.command == 'rnfile') {
+            if (command.param1 && command.param2) {
+                if (rnfile(command.param1, command.param2)) {
+                    addOutput(textarea.value, `File "${command.param1}" renamed to "${command.param2}"`);
+                } else {
+                    addOutput(textarea.value, `File "${command.param1}" failed to rename:\\`);  
+                }
+            } else {
+                addOutput(textarea.value, 'You need to provide the parameter');
+            }
+        } else if (command.command == 'cat') {
+            if (command.param1) {
+                const data = getData(command.param1);
+                if (data) {
+                    addOutput(textarea.value, data);
+                } else {
+                    addOutput(textarea.value, `File "${command.param1}" does not exist, do not worry:):):)`);  
+                }
+            } else {
+                addOutput(textarea.value, 'You need to provide the parameter');
+            }
+        } else if (command.command == 'set') {
+            if (command.param1 && command.param2) {
+                if (setData(command.param1, command.param2)) {
+                    addOutput(textarea.value, `File "${command.param1}" changed`);
+                } else {
+                    addOutput(textarea.value, `File "${command.param1}" does not exist:\\`);  
+                }
+            } else {
+                addOutput(textarea.value, 'You need to provide the parameter');
+            }
         }
         textarea.value = '';
         setCurrentPath(getPath());
