@@ -100,6 +100,8 @@ textarea.addEventListener('keypress', (e) => {
             } else {
                 addOutput(textarea.value, 'You need to provide the parameter');
             }
+        } else {
+            addOutput(textarea.value, `Unknown command: ${command.command}`);
         }
         textarea.value = '';
         setCurrentPath(getPath());
